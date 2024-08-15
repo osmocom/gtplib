@@ -10,68 +10,68 @@
 ies() ->
     [{1, "Cause", 1,
       [{"Value", 8, {enum, [{0, "Request IMSI"},
-			    {1, "Request IMEI"},
-			    {2, "Request IMSI and IMEI"},
-			    {3, "No identity needed"},
-			    {4, "Request MS Refuses"},
-			    {5, "Request MS is not GPRS Responding"},
-			    {6, "Reactivation Requested"},
-			    {7, "PDP address inactivity timer expires"},
-			    {8, "Network Failure"},
-			    {9, "QoS parameter mismatch"},
-			    {59, "GTPPrime System failure"},
-			    {60, "GTPPrime The transmit buffers are becoming full"},
-			    {61, "GTPPrime The receive buffers are becoming full"},
-			    {62, "GTPPrime Another node is about to go down"},
-			    {63, "GTPPrime This node is about to go down"},
-			    {128, "Request accepted"},
-			    {129, "New PDP type due to network preference"},
-			    {130, "New PDP type due to single address bearer only"},
-			    {177, "CDR Decoding Error"},
-			    {192, "Non-existent"},
-			    {193, "Invalid message format"},
-			    {194, "IMSI/IMEI not known"},
-			    {195, "MS is GPRS Detached"},
-			    {196, "Reject MS is not GPRS Responding"},
-			    {197, "Reject MS Refuses"},
-			    {198, "Version not supported"},
-			    {199, "No resources available"},
-			    {200, "Service not supported"},
-			    {201, "Mandatory IE incorrect"},
-			    {202, "Mandatory IE missing"},
-			    {203, "Optional IE incorrect"},
-			    {204, "System failure"},
-			    {205, "Roaming restriction"},
-			    {206, "P-TMSI Signature mismatch"},
-			    {207, "GPRS connection suspended"},
-			    {208, "Authentication failure"},
-			    {209, "User authentication failed"},
-			    {210, "Context not found"},
-			    {211, "All dynamic PDP addresses are occupied"},
-			    {212, "No memory is available"},
-			    {213, "Relocation failure"},
-			    {214, "Unknown mandatory extension header"},
-			    {215, "Semantic error in the TFT operation"},
-			    {216, "Syntactic error in the TFT operation"},
-			    {217, "Semantic errors in packet filter"},
-			    {218, "Syntactic errors in packet filter"},
-			    {219, "Missing or unknown APN"},
-			    {220, "Unknown PDP address or PDP type"},
-			    {221, "PDP context without TFT already activated"},
-			    {222, "APN access denied no subscription"},
-			    {223, "APN Restriction type incompatibility with currently active PDP Contexts"},
-			    {224, "MS MBMS Capabilities Insufficient"},
-			    {225, "Invalid Correlation-ID"},
-			    {226, "MBMS Bearer Context Superseded"},
-			    {227, "Bearer Control Mode violation"},
-			    {228, "Collision with network initiated request"},
-			    {229, "APN Congestion"},
-			    {230, "Bearer handling not supported"},
-			    {231, "Target access restricted for the subscriber"},
-			    {252, "Request related to possibly duplicated packets already fulfilled"},
-			    {253, "Request already fulfilled"},
-			    {254, "Sequence numbers of released/cancelled packets IE incorrect"},
-			    {255, "Request not fulfilled"}]}}
+                            {1, "Request IMEI"},
+                            {2, "Request IMSI and IMEI"},
+                            {3, "No identity needed"},
+                            {4, "Request MS Refuses"},
+                            {5, "Request MS is not GPRS Responding"},
+                            {6, "Reactivation Requested"},
+                            {7, "PDP address inactivity timer expires"},
+                            {8, "Network Failure"},
+                            {9, "QoS parameter mismatch"},
+                            {59, "GTPPrime System failure"},
+                            {60, "GTPPrime The transmit buffers are becoming full"},
+                            {61, "GTPPrime The receive buffers are becoming full"},
+                            {62, "GTPPrime Another node is about to go down"},
+                            {63, "GTPPrime This node is about to go down"},
+                            {128, "Request accepted"},
+                            {129, "New PDP type due to network preference"},
+                            {130, "New PDP type due to single address bearer only"},
+                            {177, "CDR Decoding Error"},
+                            {192, "Non-existent"},
+                            {193, "Invalid message format"},
+                            {194, "IMSI/IMEI not known"},
+                            {195, "MS is GPRS Detached"},
+                            {196, "Reject MS is not GPRS Responding"},
+                            {197, "Reject MS Refuses"},
+                            {198, "Version not supported"},
+                            {199, "No resources available"},
+                            {200, "Service not supported"},
+                            {201, "Mandatory IE incorrect"},
+                            {202, "Mandatory IE missing"},
+                            {203, "Optional IE incorrect"},
+                            {204, "System failure"},
+                            {205, "Roaming restriction"},
+                            {206, "P-TMSI Signature mismatch"},
+                            {207, "GPRS connection suspended"},
+                            {208, "Authentication failure"},
+                            {209, "User authentication failed"},
+                            {210, "Context not found"},
+                            {211, "All dynamic PDP addresses are occupied"},
+                            {212, "No memory is available"},
+                            {213, "Relocation failure"},
+                            {214, "Unknown mandatory extension header"},
+                            {215, "Semantic error in the TFT operation"},
+                            {216, "Syntactic error in the TFT operation"},
+                            {217, "Semantic errors in packet filter"},
+                            {218, "Syntactic errors in packet filter"},
+                            {219, "Missing or unknown APN"},
+                            {220, "Unknown PDP address or PDP type"},
+                            {221, "PDP context without TFT already activated"},
+                            {222, "APN access denied no subscription"},
+                            {223, "APN Restriction type incompatibility with currently active PDP Contexts"},
+                            {224, "MS MBMS Capabilities Insufficient"},
+                            {225, "Invalid Correlation-ID"},
+                            {226, "MBMS Bearer Context Superseded"},
+                            {227, "Bearer Control Mode violation"},
+                            {228, "Collision with network initiated request"},
+                            {229, "APN Congestion"},
+                            {230, "Bearer handling not supported"},
+                            {231, "Target access restricted for the subscriber"},
+                            {252, "Request related to possibly duplicated packets already fulfilled"},
+                            {253, "Request already fulfilled"},
+                            {254, "Sequence numbers of released/cancelled packets IE incorrect"},
+                            {255, "Request not fulfilled"}]}}
       ]},
      {2, "International Mobile Subscriber Identity", 8,
       [{"IMSI", 64, {type, imsi}}]},
@@ -143,9 +143,9 @@ ies() ->
       [{"Value", 8, integer}]},
      {126, "Packet Transfer Command", 1,
       [{"Command", 8, {enum, [{1, "Send Data Record Packet"},
-			      {2, "Send possibly duplicated Data Record Packet"},
-			      {3, "Cancel Data Record Packet"},
-			      {4, "Release Data Record Packet"}]}}]},
+                              {2, "Send possibly duplicated Data Record Packet"},
+                              {3, "Cancel Data Record Packet"},
+                              {4, "Release Data Record Packet"}]}}]},
      {127, "Charging ID", 4,
       [{id, 4, bytes}]},
      {128, "End User Address", '_',
@@ -261,13 +261,13 @@ ies() ->
       []},
      {148, "Common Flags", '_',
       [{"Flags", {flags, ["Dual Address Bearer Flag",
-			  "Upgrade QoS Supported",
-			  "NRSN",
-			  "No QoS negotiation",
-			  "MBMS Counting Information",
-			  "RAN Procedures Ready",
-			  "MBMS Service Type",
-			  "Prohibit Payload Compression"]}}]},
+                          "Upgrade QoS Supported",
+                          "NRSN",
+                          "No QoS negotiation",
+                          "MBMS Counting Information",
+                          "RAN Procedures Ready",
+                          "MBMS Service Type",
+                          "Prohibit Payload Compression"]}}]},
      {149, "APN Restriction", '_',
       [{"Restriction Type Value", 8, integer}]},
      {150, "Radio Priority LCS", '_',
@@ -336,8 +336,8 @@ ies() ->
       []},
      {181, "MS Info Change Reporting Action", '_',
       [{"Action", 8, {enum, [{0, "Stop Reporting"},
-			     {1, "Start Reporting CGI/SAI"},
-			     {2, "Start Reporting RAI"}]}}]},
+                             {1, "Start Reporting CGI/SAI"},
+                             {2, "Start Reporting RAI"}]}}]},
      {182, "Direct Tunnel Flags", '_',
       []},
      {183, "Correlation-ID", '_',
@@ -357,7 +357,7 @@ ies() ->
      {190, "Fully Qualified Domain Name", '_',
       [{"FQDN", 0, {type, fqdn}}]},
      {191, "Evolved Allocation/Retention Priority I", '_',
-       [{'_', 1},
+      [{'_', 1},
        {"PCI", 1, integer},
        {"PL", 4, integer},
        {'_', 1},
@@ -366,13 +366,13 @@ ies() ->
       []},
      {193, "Extended Common Flags", '_',
       [{"Flags", {flags, ["UASI",
-			  "BDWI",
-			  "PCRI",
-			  "VB",
-			  "RetLoc",
-			  "CPSR",
-			  "CCRSI",
-			  "Unauthenticated IMSI"]}}]},
+                          "BDWI",
+                          "PCRI",
+                          "VB",
+                          "RetLoc",
+                          "CPSR",
+                          "CCRSI",
+                          "Unauthenticated IMSI"]}}]},
      {194, "User CSG Information", '_',
       []},
      {195, "CSG Information Reporting Action", '_',
@@ -599,7 +599,7 @@ gen_encoder_bin({Value, Size}) when is_integer(Value); is_atom(Value) ->
 gen_encoder_bin({Name, {flags, Flags0}}) ->
     Flags = [s2f(Flag) || Flag <- reorder_flags(Flags0)],
     [io_lib:format("(encode_min_int(8, encode_flags(M_~s, ~p), little))/binary",
-		   [s2a(Name), Flags])];
+                   [s2a(Name), Flags])];
 gen_encoder_bin({Name, Size, {enum, _Enum}}) ->
     [io_lib:format("(enum_~s(M_~s)):~w/integer", [s2a(Name), s2a(Name), Size])];
 gen_encoder_bin({Name, boolean}) ->
@@ -635,13 +635,13 @@ s2a(Name) when is_atom(Name) ->
     Name;
 s2a(Name) ->
     lists:map(fun(32) -> $_;
-		 ($/) -> $_;
-		 ($-) -> $_;
-		 ($.) -> $_;
-		 ($,) -> $_;
-		 (C)  -> C
-	      end,
-	      string:to_lower(Name)).
+                 ($/) -> $_;
+                 ($-) -> $_;
+                 ($.) -> $_;
+                 ($,) -> $_;
+                 (C)  -> C
+              end,
+              string:to_lower(Name)).
 
 s2f(Flags) when is_list(Flags) ->
     list_to_atom(Flags).
@@ -655,12 +655,12 @@ collect(_Fun, [], Acc) ->
     lists:reverse(Acc);
 collect(Fun, [F|Fields], Acc) ->
     case Fun(F) of
-	[] ->
-	    collect(Fun, Fields, Acc);
-	{stop, L} ->
-	    lists:reverse(append(L, Acc));
-	L ->
-	    collect(Fun, Fields, append(L, Acc))
+        [] ->
+            collect(Fun, Fields, Acc);
+        {stop, L} ->
+            lists:reverse(append(L, Acc));
+        L ->
+            collect(Fun, Fields, append(L, Acc))
     end.
 
 collect(Fun, Fields) ->
@@ -713,10 +713,10 @@ collect_late_assign([], Acc) ->
     {lists:reverse(Acc), []};
 collect_late_assign(Fields = [H | T], Acc) ->
     case gen_decoder_header_match(H) of
-	{stop, Match} ->
-	    {lists:reverse([Match|Acc]), Fields};
-	Match ->
-	    collect_late_assign(T, [Match|Acc])
+        {stop, Match} ->
+            {lists:reverse([Match|Acc]), Fields};
+        Match ->
+            collect_late_assign(T, [Match|Acc])
     end.
 
 reorder_flags([]) -> [];
@@ -751,15 +751,15 @@ write_record(Name, FieldDefs) ->
 write_record({_Id, Name, Length, []})
   when is_integer(Length) ->
     FieldDefs =
-	collect(
-	  fun gen_record_def/1, [{"Instance", 0, integer},
-				 {"Content", Length, bytes}], []),
+        collect(
+          fun gen_record_def/1, [{"Instance", 0, integer},
+                                 {"Content", Length, bytes}], []),
     write_record(Name, FieldDefs);
 write_record({_Id, Name, _Length, Fields})
   when is_list(Fields) ->
     FieldDefs =
-	collect(
-	  fun gen_record_def/1, [{"Instance", 0, integer} | Fields], []),
+        collect(
+          fun gen_record_def/1, [{"Instance", 0, integer} | Fields], []),
     write_record(Name, FieldDefs);
 write_record(_) ->
     [].
@@ -771,23 +771,23 @@ write_decoder(FunName, {Id, Name, _Length, Fields})
     Body = build_late_assign(Fields),
     RecIdent = indent(Name, 6),
     RecAssign = string:join(["instance = Instance" |
-			     collect(fun gen_decoder_record_assign/1, Fields)], [",\n", RecIdent]),
+                             collect(fun gen_decoder_record_assign/1, Fields)], [",\n", RecIdent]),
     io_lib:format("~s(<<~s>>, ~w, Instance) ->~n~s    #~s{~s}",
-		  [FunName, Match, Id, Body, s2a(Name), RecAssign]);
+                  [FunName, Match, Id, Body, s2a(Name), RecAssign]);
 write_decoder(FunName, {Id, _Name, Helper})
   when is_atom(Helper) ->
     io_lib:format("~s(<<Data/binary>>, ~w, Instance) ->~n    decode_~s(Data, Instance)",
-		  [FunName, Id, Helper]);
+                  [FunName, Id, Helper]);
 write_decoder(FunName, {Id, _Name, Length, Helper})
   when is_integer(Length), is_atom(Helper) ->
     io_lib:format("~s(<<Data/binary>>, ~w, Instance) ->~n    decode_~s(Data, Instance)",
-		  [FunName, Id, Helper]).
+                  [FunName, Id, Helper]).
 
 write_rec_encoder(FunName, Id, Name, RecordAssigns, FieldAssigns) ->
     RecIdent = indent("encode_v1_element(#", 2),
     RecAssign = string:join(["instance = Instance" | RecordAssigns], [",\n", RecIdent]),
     FunHead = io_lib:format("encode_v1_element(#~s{~n~s~s}) ->~n",
-			    [s2a(Name), RecIdent, RecAssign]),
+                            [s2a(Name), RecIdent, RecAssign]),
     DecHead = io_lib:format("    ~s(~w, Instance, ", [FunName, Id]),
     BinIndent = indent(DecHead, 2),
     BinAssign = string:join(FieldAssigns, [",\n", BinIndent]),
@@ -806,15 +806,15 @@ write_encoder(FunName, {Id, Name, _Length, Fields})
 write_encoder(FunName, {Id, Name, Helper})
   when is_atom(Helper) ->
     io_lib:format("encode_v1_element(#~s{instance = Instance} = IE) ->~n    ~s(~w, Instance, encode_~s(IE))",
-		  [s2a(Name), FunName, Id, Helper]);
+                  [s2a(Name), FunName, Id, Helper]);
 write_encoder(FunName, {Id, Name, Length, Helper})
   when is_integer(Length), is_atom(Helper) ->
     io_lib:format("encode_v1_element(#~s{instance = Instance} = IE) ->~n    ~s(~w, Instance, encode_~s(IE))",
-		  [s2a(Name), FunName, Id, Helper]).
+                  [s2a(Name), FunName, Id, Helper]).
 
 main(_) ->
     MsgDescription = string:join([io_lib:format("msg_description(~s) -> <<\"~s\">>", [s2a(X), X]) || {_, X} <- msgs()]
-				 ++ ["msg_description(X) -> io_lib:format(\"~p\", [X])"], ";\n") ++ ".\n",
+                                 ++ ["msg_description(X) -> io_lib:format(\"~p\", [X])"], ";\n") ++ ".\n",
 
     {FwdFuns, RevFuns} = gen_message_type(msgs(), {[], []}),
     ErrorFun = ["message_type_v1(Type) -> error(badarg, [Type])"],
@@ -822,7 +822,7 @@ main(_) ->
 
     Records = string:join([write_record(X) || X <- ies()], "\n"),
     ExpRecs = io_lib:format("-define(GTP_V1_RECORDS, ~p).~n",
-			    [[list_to_atom(s2a(element(2, ExpRec))) || ExpRec <- ies()]]),
+                            [[list_to_atom(s2a(element(2, ExpRec))) || ExpRec <- ies()]]),
     HrlRecs = io_lib:format("~n~n~s~n~s~n", [ExpRecs, Records]),
     Enums = write_enums(ies()),
 
@@ -831,27 +831,27 @@ main(_) ->
     Funs = string:join([write_decoder("decode_v1_element", X) || X <- ies()] ++ [CatchAnyDecoder], ";\n\n"),
 
     MainDecodeSwitch = ["decode_v1(<<>>, _PrevId, _PrevInst, IEs) ->\n    IEs;\n",
-	[io_lib:format("decode_v1(<<~w, Data:~w/bytes, Next/binary>>, PrevId, PrevInst, IEs) ->~n"
-		       "    Instance = v1_instance(~w, PrevId, PrevInst),~n"
-		       "    IE = decode_v1_element(Data, ~w, Instance),~n"
-		       "    decode_v1(Next, ~w, Instance, put_ie(IE, IEs));~n", [Id, Length, Id, Id, Id]) || {Id, _, Length, _} <- ies(), Id < 128],
-	"decode_v1(<<Id, Length:16/integer, Rest/binary>>, PrevId, PrevInst, IEs) when Id > 127 ->\n"
-	"    <<Data:Length/binary, Next/binary>> = Rest,\n"
-	"    Instance = v1_instance(Id, PrevId, PrevInst),\n"
-	"    IE = decode_v1_element(Data, Id, Instance),\n"
-	"    decode_v1(Next, Id, Instance, put_ie(IE, IEs));\n"
-	"decode_v1(<<Id, Rest/binary>>, PrevId, PrevInst, IEs) ->\n"
-	"    Instance = v1_instance(Id, PrevId, PrevInst),\n"
-	"    IE = {Id, Instance, Rest},\n"
-	"    decode_v1(<<>>, Id, Instance, put_ie(IE, IEs)).\n"],
+                        [io_lib:format("decode_v1(<<~w, Data:~w/bytes, Next/binary>>, PrevId, PrevInst, IEs) ->~n"
+                                       "    Instance = v1_instance(~w, PrevId, PrevInst),~n"
+                                       "    IE = decode_v1_element(Data, ~w, Instance),~n"
+                                       "    decode_v1(Next, ~w, Instance, put_ie(IE, IEs));~n", [Id, Length, Id, Id, Id]) || {Id, _, Length, _} <- ies(), Id < 128],
+                        "decode_v1(<<Id, Length:16/integer, Rest/binary>>, PrevId, PrevInst, IEs) when Id > 127 ->\n"
+                        "    <<Data:Length/binary, Next/binary>> = Rest,\n"
+                        "    Instance = v1_instance(Id, PrevId, PrevInst),\n"
+                        "    IE = decode_v1_element(Data, Id, Instance),\n"
+                        "    decode_v1(Next, Id, Instance, put_ie(IE, IEs));\n"
+                        "decode_v1(<<Id, Rest/binary>>, PrevId, PrevInst, IEs) ->\n"
+                        "    Instance = v1_instance(Id, PrevId, PrevInst),\n"
+                        "    IE = {Id, Instance, Rest},\n"
+                        "    decode_v1(<<>>, Id, Instance, put_ie(IE, IEs)).\n"],
 
     CatchAnyEncoder = "encode_v1_element({Tag, Instance, Value}) when is_integer(Tag), is_integer(Instance), is_binary(Value) ->\n    encode_v1_element(Tag, Instance, Value)",
     EncFuns = string:join([write_encoder("encode_v1_element", X) || X <- ies()]
-			  ++ [CatchAnyEncoder] , ";\n\n"),
+                          ++ [CatchAnyEncoder] , ";\n\n"),
 
     ErlDecls = io_lib:format("~n~n~s~n~s~n~s~n~s.~n~n~s~n~n~s.~n~n",
-			     [MsgDescription, MTypes, Enums, Funs,
-			      MainDecodeSwitch, EncFuns]),
+                             [MsgDescription, MTypes, Enums, Funs,
+                              MainDecodeSwitch, EncFuns]),
 
     {ok, HrlF0} = file:read_file("include/gtp_packet.hrl"),
     [HrlHead, _, HrlV2] = binary:split(HrlF0, [?V1_TAG, ?V2_TAG], [global]),

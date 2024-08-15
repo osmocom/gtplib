@@ -13,85 +13,85 @@ raw_ies() ->
       [{"IMSI", 0, {type, tbcd}}]},
      {2, "v2 Cause", 5,
       [{"v2 Cause", 8, {enum, [{1, "Reserved"},
-			       {2, "Local Detach"},
-			       {3, "Complete Detach"},
-			       {4, "RAT changed from 3GPP to Non-3GPP"},
-			       {5, "ISR deactivation"},
-			       {6, "Error Indication received from RNC/eNodeB/S4-SGSN"},
-			       {7, "IMSI Detach Only"},
-			       {8, "Reactivation Requested"},
-			       {9, "PDN reconnection to this APN disallowed"},
-			       {10, "Access changed from Non-3GPP to 3GPP"},
-			       {11, "PDN connection inactivity timer expires"},
-			       {12, "PGW not responding"},
-			       {13, "Network Failure"},
-			       {14, "QoS parameter mismatch"},
-			       {16, "Request accepted"},
-			       {17, "Request accepted partially"},
-			       {18, "New PDN type due to network preference"},
-			       {19, "New PDN type due to single address bearer only"},
-			       {64, "Context Not Found"},
-			       {65, "Invalid Message Format"},
-			       {66, "Version not supported by next peer"},
-			       {67, "Invalid length"},
-			       {68, "Service not supported"},
-			       {69, "Mandatory IE incorrect"},
-			       {70, "Mandatory IE missing"},
-			       {72, "System failure"},
-			       {73, "No resources available"},
-			       {74, "Semantic error in the TFT operation"},
-			       {75, "Syntactic error in the TFT operation"},
-			       {76, "Semantic errors in packet filter"},
-			       {77, "Syntactic errors in packet filter"},
-			       {78, "Missing or unknown APN"},
-			       {80, "GRE key not found"},
-			       {81, "Relocation failure"},
-			       {82, "Denied in RAT"},
-			       {83, "Preferred PDN type not supported"},
-			       {84, "All dynamic addresses are occupied"},
-			       {85, "UE context without TFT already activated"},
-			       {86, "Protocol type not supported"},
-			       {87, "UE not responding"},
-			       {88, "UE refuses"},
-			       {89, "Service denied"},
-			       {90, "Unable to page UE"},
-			       {91, "No memory available"},
-			       {92, "User authentication failed"},
-			       {93, "APN access denied - no subscription"},
-			       {94, "Request rejected"},
-			       {95, "P-TMSI Signature mismatch"},
-			       {96, "IMSI/IMEI not known"},
-			       {97, "Semantic error in the TAD operation"},
-			       {98, "Syntactic error in the TAD operation"},
-			       {100, "Remote peer not responding"},
-			       {101, "Collision with network initiated request"},
-			       {102, "Unable to page UE due to Suspension"},
-			       {103, "Conditional IE missing"},
-			       {104, "APN Restriction type Incompatible with currently active PDN connection"},
-			       {105, "Invalid overall length of the triggered response message and a piggybacked initial message"},
-			       {106, "Data forwarding not supported"},
-			       {107, "Invalid reply from remote peer"},
-			       {108, "Fallback to GTPv1"},
-			       {109, "Invalid peer"},
-			       {110, "Temporarily rejected due to handover/TAU/RAU procedure in progress"},
-			       {111, "Modifications not limited to S1-U bearers"},
-			       {112, "Request rejected for a PMIPv6 reason"},
-			       {113, "APN Congestion"},
-			       {114, "Bearer handling not supported"},
-			       {115, "UE already re-attached"},
-			       {116, "Multiple PDN connections for a given APN not allowed"},
-			       {117, "Target access restricted for the subscriber"},
-			       {119, "MME/SGSN refuses due to VPLMN Policy"},
-			       {120, "GTP-C Entity Congestion"},
-			       {121, "Late Overlapping Request"},
-			       {122, "Timed out Request"},
-			       {123, "UE is temporarily not reachable due to power saving"},
-			       {124, "Relocation failure due to NAS message redirection"},
-			       {125, "UE not authorised by OCS or external AAA Server"},
-			       {126, "Multiple accesses to a PDN connection not allowed"},
-			       {127, "Request rejected due to UE capability"},
-			       {128, "S1-U Path Failure"},
-			       {129, "5GC not allowed"}]}},
+                               {2, "Local Detach"},
+                               {3, "Complete Detach"},
+                               {4, "RAT changed from 3GPP to Non-3GPP"},
+                               {5, "ISR deactivation"},
+                               {6, "Error Indication received from RNC/eNodeB/S4-SGSN"},
+                               {7, "IMSI Detach Only"},
+                               {8, "Reactivation Requested"},
+                               {9, "PDN reconnection to this APN disallowed"},
+                               {10, "Access changed from Non-3GPP to 3GPP"},
+                               {11, "PDN connection inactivity timer expires"},
+                               {12, "PGW not responding"},
+                               {13, "Network Failure"},
+                               {14, "QoS parameter mismatch"},
+                               {16, "Request accepted"},
+                               {17, "Request accepted partially"},
+                               {18, "New PDN type due to network preference"},
+                               {19, "New PDN type due to single address bearer only"},
+                               {64, "Context Not Found"},
+                               {65, "Invalid Message Format"},
+                               {66, "Version not supported by next peer"},
+                               {67, "Invalid length"},
+                               {68, "Service not supported"},
+                               {69, "Mandatory IE incorrect"},
+                               {70, "Mandatory IE missing"},
+                               {72, "System failure"},
+                               {73, "No resources available"},
+                               {74, "Semantic error in the TFT operation"},
+                               {75, "Syntactic error in the TFT operation"},
+                               {76, "Semantic errors in packet filter"},
+                               {77, "Syntactic errors in packet filter"},
+                               {78, "Missing or unknown APN"},
+                               {80, "GRE key not found"},
+                               {81, "Relocation failure"},
+                               {82, "Denied in RAT"},
+                               {83, "Preferred PDN type not supported"},
+                               {84, "All dynamic addresses are occupied"},
+                               {85, "UE context without TFT already activated"},
+                               {86, "Protocol type not supported"},
+                               {87, "UE not responding"},
+                               {88, "UE refuses"},
+                               {89, "Service denied"},
+                               {90, "Unable to page UE"},
+                               {91, "No memory available"},
+                               {92, "User authentication failed"},
+                               {93, "APN access denied - no subscription"},
+                               {94, "Request rejected"},
+                               {95, "P-TMSI Signature mismatch"},
+                               {96, "IMSI/IMEI not known"},
+                               {97, "Semantic error in the TAD operation"},
+                               {98, "Syntactic error in the TAD operation"},
+                               {100, "Remote peer not responding"},
+                               {101, "Collision with network initiated request"},
+                               {102, "Unable to page UE due to Suspension"},
+                               {103, "Conditional IE missing"},
+                               {104, "APN Restriction type Incompatible with currently active PDN connection"},
+                               {105, "Invalid overall length of the triggered response message and a piggybacked initial message"},
+                               {106, "Data forwarding not supported"},
+                               {107, "Invalid reply from remote peer"},
+                               {108, "Fallback to GTPv1"},
+                               {109, "Invalid peer"},
+                               {110, "Temporarily rejected due to handover/TAU/RAU procedure in progress"},
+                               {111, "Modifications not limited to S1-U bearers"},
+                               {112, "Request rejected for a PMIPv6 reason"},
+                               {113, "APN Congestion"},
+                               {114, "Bearer handling not supported"},
+                               {115, "UE already re-attached"},
+                               {116, "Multiple PDN connections for a given APN not allowed"},
+                               {117, "Target access restricted for the subscriber"},
+                               {119, "MME/SGSN refuses due to VPLMN Policy"},
+                               {120, "GTP-C Entity Congestion"},
+                               {121, "Late Overlapping Request"},
+                               {122, "Timed out Request"},
+                               {123, "UE is temporarily not reachable due to power saving"},
+                               {124, "Relocation failure due to NAS message redirection"},
+                               {125, "UE not authorised by OCS or external AAA Server"},
+                               {126, "Multiple accesses to a PDN connection not allowed"},
+                               {127, "Request rejected due to UE capability"},
+                               {128, "S1-U Path Failure"},
+                               {129, "5GC not allowed"}]}},
        {'_', 5},
        {"PCE", 1, integer},
        {"BCE", 1, integer},
@@ -119,24 +119,24 @@ raw_ies() ->
       [{"MSISDN", 0, {type, tbcd}}]},
      {77, "v2 Indication",
       [{"Flags", 16,
-	{flags,	['DAF', 'DTF', 'HI', 'DFI', 'OI', 'ISRSI', 'ISRAI', 'SGWCI',
-		 'SQCI', 'UIMSI', 'CFSI', 'CRSI', 'P', 'PT', 'SI', 'MSV',
-		 'RetLoc', 'PBIC', 'SRNI', 'S6AF', 'S4AF', 'MBMDT', 'ISRAU', 'CCRSI',
-		 'CPRAI', 'ARRL', 'PPOF', 'PPON/PPEI', 'PPSI', 'CSFBI', 'CLII', 'CPSR',
-		 'NSI', 'UASI', 'DTCI', 'BDWI', 'PSCI', 'PCRI', 'AOSI', 'AOPI',
-		 'ROAAI', 'EPCOSI', 'CPOPCI', 'PMTSMI', 'S11TF', 'PNSI', 'UNACCSI', 'WPMSI',
-		 '5GSNN26', 'REPREFI', '5GSIWK', 'EEVRSI', 'LTEMUI', 'LTEMPI', 'ENBCRSI', 'TSPCMI',
-		 'CSRMFI', 'MTEDTN', 'MTEDTA', 'N5GNMI', '5GCNRS', '5GCNRI', '5SRHOI', 'ETHPDN',
-		 '_', '_', '_', '_', 'SISSME', 'NSENBI', 'IPFUPF', 'EMCI']}}]},
+        {flags, ['DAF', 'DTF', 'HI', 'DFI', 'OI', 'ISRSI', 'ISRAI', 'SGWCI',
+                 'SQCI', 'UIMSI', 'CFSI', 'CRSI', 'P', 'PT', 'SI', 'MSV',
+                 'RetLoc', 'PBIC', 'SRNI', 'S6AF', 'S4AF', 'MBMDT', 'ISRAU', 'CCRSI',
+                 'CPRAI', 'ARRL', 'PPOF', 'PPON/PPEI', 'PPSI', 'CSFBI', 'CLII', 'CPSR',
+                 'NSI', 'UASI', 'DTCI', 'BDWI', 'PSCI', 'PCRI', 'AOSI', 'AOPI',
+                 'ROAAI', 'EPCOSI', 'CPOPCI', 'PMTSMI', 'S11TF', 'PNSI', 'UNACCSI', 'WPMSI',
+                 '5GSNN26', 'REPREFI', '5GSIWK', 'EEVRSI', 'LTEMUI', 'LTEMPI', 'ENBCRSI', 'TSPCMI',
+                 'CSRMFI', 'MTEDTN', 'MTEDTA', 'N5GNMI', '5GCNRS', '5GCNRI', '5SRHOI', 'ETHPDN',
+                 '_', '_', '_', '_', 'SISSME', 'NSENBI', 'IPFUPF', 'EMCI']}}]},
      {78, "v2 Protocol Configuration Options",
       [{"Config", protocol_config_opts}]},
      {79, "v2 PDN Address Allocation",
       [{'_', 5},
        {"Type", 3, {enum, [{1, "IPv4"},
-			   {2, "IPv6"},
-			   {3, "IPv4v6"},
-			   {4, "Non-IP"},
-			   {5, "Ethernet"}]}},
+                           {2, "IPv6"},
+                           {3, "IPv4v6"},
+                           {4, "Non-IP"},
+                           {5, "Ethernet"}]}},
        {"Address", 0, binary}]},
      {80, "v2 Bearer Level Quality of Service",
       [{'_', 1},
@@ -205,9 +205,9 @@ raw_ies() ->
      {99, "v2 PDN Type",
       [{'_', 4},
        {"PDN Type", 4, {enum, [{1, "IPv4"},
-			       {2, "IPv6"},
-			       {3, "IPv4v6"},
-			       {4, "Non-IP"}]}},
+                               {2, "IPv6"},
+                               {3, "IPv4v6"},
+                               {4, "Non-IP"}]}},
        {'_', 0}]},
      {100, "v2 Procedure Transaction ID",
       [{"PTI", 8, integer},
@@ -296,15 +296,15 @@ raw_ies() ->
        {"Source Id", 0, binary}]},
      {131, "v2 Change Reporting Action",
       [{"Action", 8, {enum, [{0, "Stop Reporting"},
-			     {1, "Start Reporting CGI/SAI"},
-			     {2, "Start Reporting RAI"},
-			     {3, "Start Reporting TAI"},
-			     {4, "Start Reporting ECGI"},
-			     {5, "Start Reporting CGI/SAI and RAI"},
-			     {6, "Start Reporting TAI and ECGI"},
-			     {7, "Start Reporting Macro eNodeB ID and Extended Macro eNodeB ID"},
-			     {8, "Start Reporting TAI, Macro eNodeB ID and Extended Macro eNodeB ID"}
-			    ]}},
+                             {1, "Start Reporting CGI/SAI"},
+                             {2, "Start Reporting RAI"},
+                             {3, "Start Reporting TAI"},
+                             {4, "Start Reporting ECGI"},
+                             {5, "Start Reporting CGI/SAI and RAI"},
+                             {6, "Start Reporting TAI and ECGI"},
+                             {7, "Start Reporting Macro eNodeB ID and Extended Macro eNodeB ID"},
+                             {8, "Start Reporting TAI, Macro eNodeB ID and Extended Macro eNodeB ID"}
+                            ]}},
        {'_', 0}]},
      {132, "v2 Fully Qualified PDN Connection Set Identifier",
       v2_fully_qualified_pdn_connection_set_identifier},
@@ -406,9 +406,9 @@ raw_ies() ->
        {"Type", 4, integer},
        {"Cause", 0, binary}]},
      {173, "v2 CN Operator Selection Entity",
-       [{'_', 6},
-	{"Entity", 2, integer},
-	{'_', 0}]},
+      [{'_', 6},
+       {"Entity", 2, integer},
+       {'_', 0}]},
      {174, "v2 Trusted WLAN Mode Indication",
       [{"Indication", 0, {flags, ['_', '_', '_', '_', '_', '_', 'MCM', 'SCM']}}]},
      {175, "v2 Node Number",
@@ -443,7 +443,7 @@ raw_ies() ->
       [{"Timestamp", 48, integer},
        {'_', 0}]},
      {189, "v2 Monitoring Event Information", []},  % WTF: flags encoded in the spare bits
-						    %      of the Instance field
+                                                %      of the Instance field
      {190, "v2 ECGI List",
       [{"ECGIs", 16, {array, {7, bytes}}},
        {'_', 0}]},
@@ -592,16 +592,16 @@ msgs() ->
 -type enum() :: any().
 -type array_def() :: any().
 -type field_type() ::
-    {flags, [flag()]} |
-    {enum, [enum()]} |
-    boolean |
-    integer |
-    bits |
-    bytes |
-    binary |
-    length_binary |
-    {array, array_def()} |
-    tuple().
+        {flags, [flag()]} |
+        {enum, [enum()]} |
+        boolean |
+        integer |
+        bits |
+        bytes |
+        binary |
+        length_binary |
+        {array, array_def()} |
+        tuple().
 
 -record(ie, {id, name, type, min_field_count, fields}).
 -record(field, {name, len, optional, type, spec}).
@@ -613,34 +613,34 @@ msgs() ->
 
 ies() ->
     TypeFF = fun(Type,          F) when is_atom(Type) -> F#field{type = Type};
-		({type,  Type}, F) when is_atom(Type) -> F#field{type = helper, spec = Type};
-		({array, Size}, F) when is_integer(Size) -> F#field{type = array, spec = {1, byte}};
-		({Type,  Spec}, F) when is_atom(Type) -> F#field{type = Type, spec = Spec}
-	     end,
+                ({type,  Type}, F) when is_atom(Type) -> F#field{type = helper, spec = Type};
+                ({array, Size}, F) when is_integer(Size) -> F#field{type = array, spec = {1, byte}};
+                ({Type,  Spec}, F) when is_atom(Type) -> F#field{type = Type, spec = Spec}
+             end,
     FieldF = fun({Name, Len, Type}, Optional, F) when is_integer(Len) ->
-		     [TypeFF(Type, #field{name = s2a(Name), len = Len,
-					  optional = Optional}) | F];
-		({Name, Type}, Optional, F) when is_list(Name), is_atom(Type) ->
-		     [#field{name = s2a(Name), len = 0, optional = Optional,
-			     type = helper, spec = Type} | F];
-		({'_', Len}, Optional, F) when is_integer(Len) ->
-		     [#field{len = Len, optional = Optional, type = '_'} | F]
-	     end,
+                     [TypeFF(Type, #field{name = s2a(Name), len = Len,
+                                          optional = Optional}) | F];
+                ({Name, Type}, Optional, F) when is_list(Name), is_atom(Type) ->
+                     [#field{name = s2a(Name), len = 0, optional = Optional,
+                             type = helper, spec = Type} | F];
+                ({'_', Len}, Optional, F) when is_integer(Len) ->
+                     [#field{len = Len, optional = Optional, type = '_'} | F]
+             end,
     SpecF = fun(Fields, #ie{min_field_count = MinLen} = IE) when is_list(Fields) ->
-		    {FieldDef, _} =
-			lists:foldl(
-			  fun(Field, {F, Cnt}) ->
-				  {FieldF(Field, Cnt >= MinLen, F), Cnt + 1} end,
-			  {[], 0}, Fields),
-		    IE#ie{fields = lists:reverse(FieldDef)};
-	      (Helper, IE) when is_atom(Helper) ->
-		    IE#ie{type = Helper}
-	   end,
+                    {FieldDef, _} =
+                        lists:foldl(
+                          fun(Field, {F, Cnt}) ->
+                                  {FieldF(Field, Cnt >= MinLen, F), Cnt + 1} end,
+                          {[], 0}, Fields),
+                    IE#ie{fields = lists:reverse(FieldDef)};
+               (Helper, IE) when is_atom(Helper) ->
+                    IE#ie{type = Helper}
+            end,
     lists:map(
       fun ({Id, Name, Spec}) ->
-	      SpecF(Spec, #ie{id = Id, name = s2a(Name)});
-	  ({Id, Name, MinLen, Spec}) ->
-	      SpecF(Spec, #ie{id = Id, name = s2a(Name), min_field_count = MinLen})
+              SpecF(Spec, #ie{id = Id, name = s2a(Name)});
+          ({Id, Name, MinLen, Spec}) ->
+              SpecF(Spec, #ie{id = Id, name = s2a(Name), min_field_count = MinLen})
       end, raw_ies()).
 
 %% gen_record_def({Value, _}) when is_integer(Value); is_atom(Value) ->
@@ -714,7 +714,7 @@ gen_decoder_record_assign(#field{name = Name, spec = mccmnc}) ->
     [io_lib:format("plmn_id = {decode_mcc(M_~s), decode_mnc(M_~s)}", [Name, Name])];
 gen_decoder_record_assign(#field{name = Name, type = flags, spec = Flags}) ->
     [io_lib:format("~s = decode_flags(M_~s, ~p)",
-		   [Name, Name, Flags])];
+                   [Name, Name, Flags])];
 
 gen_decoder_record_assign(#field{name = Name, type = enum}) ->
     [io_lib:format("~s = enum_v2_~s(M_~s)", [Name, Name, Name])];
@@ -754,12 +754,12 @@ gen_encoder_bin(#field{spec = mccmnc}) ->
     ["(encode_mccmnc(M_mcc, M_mnc))/binary"];
 gen_encoder_bin(#field{name = Name, len = MinSize, type = flags, spec = Flags}) ->
     [io_lib:format("(encode_min_int(~p, encode_flags(M_~s, ~p), little))/binary",
-		   [MinSize, Name, reorder_flags(Flags)])];
+                   [MinSize, Name, reorder_flags(Flags)])];
 gen_encoder_bin(#field{name = Name, len = Size, type = enum}) ->
     [io_lib:format("(enum_v2_~s(M_~s)):~w/integer", [Name, Name, Size])];
 gen_encoder_bin(#field{name = Name, len = Len, type = array, spec = {Size, Type}}) ->
     [io_lib:format("(length(M_~s)):~w/integer, (<< <<X:~w/~w>> || X <- M_~s>>)/binary",
-		   [Name, Len, Size, Type, Name])];
+                   [Name, Len, Size, Type, Name])];
 gen_encoder_bin(#field{name = Name, len = Len, type = array}) ->
     [io_lib:format("(length(M_~s)):~w/integer, (<< <<X/binary>> || X <- M_~s>>)/binary", [Name, Len, Name])];
 gen_encoder_bin(#field{name = Name, len = 0, type = helper, spec = TypeName}) ->
@@ -789,13 +789,13 @@ s2a(Name) when is_atom(Name) ->
     Name;
 s2a(Name) ->
     S = lists:map(fun(32) -> $_;
-		     ($/) -> $_;
-		     ($-) -> $_;
-		     ($.) -> $_;
-		     ($,) -> $_;
-		     (C)  -> C
-		  end,
-		  string:to_lower(Name)),
+                     ($/) -> $_;
+                     ($-) -> $_;
+                     ($.) -> $_;
+                     ($,) -> $_;
+                     (C)  -> C
+                  end,
+                  string:to_lower(Name)),
     list_to_atom(S).
 
 to_string(S) when is_list(S)   -> S;
@@ -811,12 +811,12 @@ collect(_Fun, [], Acc) ->
     lists:reverse(Acc);
 collect(Fun, [F|Fields], Acc) ->
     case Fun(F) of
-	[] ->
-	    collect(Fun, Fields, Acc);
-	{stop, L} ->
-	    lists:reverse(append(L, Acc));
-	L ->
-	    collect(Fun, Fields, append(L, Acc))
+        [] ->
+            collect(Fun, Fields, Acc);
+        {stop, L} ->
+            lists:reverse(append(L, Acc));
+        L ->
+            collect(Fun, Fields, append(L, Acc))
     end.
 
 collect(Fun, Fields) ->
@@ -878,10 +878,10 @@ collect_late_assign([], Acc) ->
     {lists:reverse(Acc), []};
 collect_late_assign(Fields = [H | T], Acc) ->
     case gen_decoder_header_match(H) of
-	{stop, Match} ->
-	    {lists:reverse([Match|Acc]), Fields};
-	Match ->
-	    collect_late_assign(T, [Match|Acc])
+        {stop, Match} ->
+            {lists:reverse([Match|Acc]), Fields};
+        Match ->
+            collect_late_assign(T, [Match|Acc])
     end.
 
 
@@ -915,12 +915,12 @@ write_decoder(#ie{min_field_count = Min, fields = Fields} = IE, Fns)
     SubIE = IE#ie{min_field_count = undefined},
     lists:foldl(
       fun (Len, FnsSub) ->
-	      {H,T} = lists:split(Len, Fields),
-	      case T of
-		  [] -> FnsSub;
-		  _ ->
-		      write_decoder(SubIE#ie{fields = H ++ [?WildCard]}, FnsSub)
-	      end
+              {H,T} = lists:split(Len, Fields),
+              case T of
+                  [] -> FnsSub;
+                  _ ->
+                      write_decoder(SubIE#ie{fields = H ++ [?WildCard]}, FnsSub)
+              end
       end, Fns, lists:seq(Min, length(Fields)));
 
 write_decoder(#ie{id = Id, type = undefined, name = Name, fields = Fields}, Fns) ->
@@ -929,14 +929,14 @@ write_decoder(#ie{id = Id, type = undefined, name = Name, fields = Fields}, Fns)
     Body = build_late_assign(Fields),
     RecIdent = indent(Name, 6),
     RecAssign = string:join(["instance = Instance" |
-			     collect(fun gen_decoder_record_assign/1, Fields)], [",\n", RecIdent]),
+                             collect(fun gen_decoder_record_assign/1, Fields)], [",\n", RecIdent]),
     F = io_lib:format("~s(<<~s>>, ~w, Instance) ->~n~s    #~s{~s}",
-		      [?DecoderFunName, Match, Id, Body, Name, RecAssign]),
+                      [?DecoderFunName, Match, Id, Body, Name, RecAssign]),
     [F | Fns];
 
 write_decoder(#ie{id = Id, type = Helper}, Fns) ->
     F = io_lib:format("~s(<<Data/binary>>, ~w, Instance) ->~n    decode_~s(Data, Instance)",
-		      [?DecoderFunName, Id, Helper]),
+                      [?DecoderFunName, Id, Helper]),
     [F | Fns].
 
 write_encoder(#ie{min_field_count = Min, fields = Fields} = IE, Fns)
@@ -944,20 +944,20 @@ write_encoder(#ie{min_field_count = Min, fields = Fields} = IE, Fns)
     SubIE = IE#ie{min_field_count = undefined},
     lists:foldl(
       fun (Len, FnsSub) ->
-	      {H,T} = lists:split(Len, Fields),
-	      case T of
-		  [] ->
-		      write_encoder(SubIE#ie{fields = H}, FnsSub);
-		  [#field{type = '_'}|_] -> FnsSub;
-		  [M|_] ->
-		      write_encoder(SubIE#ie{fields = H ++ [M#field{type = undefined}]}, FnsSub)
-	      end
+              {H,T} = lists:split(Len, Fields),
+              case T of
+                  [] ->
+                      write_encoder(SubIE#ie{fields = H}, FnsSub);
+                  [#field{type = '_'}|_] -> FnsSub;
+                  [M|_] ->
+                      write_encoder(SubIE#ie{fields = H ++ [M#field{type = undefined}]}, FnsSub)
+              end
       end, Fns, lists:seq(length(Fields), Min, -1));
 
 write_encoder(#ie{id = Id, name = Name, type = undefined, fields = Fields}, Fns) ->
     RecIdent = indent("encode_v2_element(#", 2),
     RecAssign = string:join(["instance = Instance" |
-			     collect(fun gen_encoder_record_assign/1, Fields)], [",\n", RecIdent]),
+                             collect(fun gen_encoder_record_assign/1, Fields)], [",\n", RecIdent]),
     FunHead = io_lib:format("encode_v2_element(#~s{~n~s~s}) ->~n", [Name, RecIdent, RecAssign]),
     DecHead = io_lib:format("    ~s(~w, Instance, ", [?EncoderFunName, Id]),
     BinIndent = indent(DecHead, 2),
@@ -966,14 +966,14 @@ write_encoder(#ie{id = Id, name = Name, type = undefined, fields = Fields}, Fns)
     [F | Fns];
 write_encoder(#ie{id = Id, name = Name, type = Helper}, Fns) ->
     F = io_lib:format("encode_v2_element(#~s{instance = Instance} = IE) ->~n    ~s(~w, Instance, encode_~s(IE))",
-		      [Name, ?EncoderFunName, Id, Helper]),
+                      [Name, ?EncoderFunName, Id, Helper]),
     [F | Fns].
 
 main(_) ->
     IEs = ies(),
 
     MsgDescription = string:join([io_lib:format("msg_description_v2(~s) -> <<\"~s\">>", [s2a(X), X]) || {_, X} <- msgs()]
-				 ++ ["msg_description_v2(X) -> io_lib:format(\"~p\", [X])"], ";\n") ++ ".\n",
+                                 ++ ["msg_description_v2(X) -> io_lib:format(\"~p\", [X])"], ";\n") ++ ".\n",
 
     {FwdFuns, RevFuns} = gen_message_type(msgs(), {[], []}),
     ErrorFun = ["message_type_v2(Type) -> error(badarg, [Type])"],
@@ -981,7 +981,7 @@ main(_) ->
 
     Records = string:join([write_record(X) || X <- IEs], "\n"),
     ExpRecs = io_lib:format("-define(GTP_V2_RECORDS, ~p).~n",
-			    [[ExpRecName || #ie{name = ExpRecName} <- IEs]]),
+                            [[ExpRecName || #ie{name = ExpRecName} <- IEs]]),
     HrlRecs = io_lib:format("~n~n~s~n~s", [ExpRecs, Records]),
     Enums = write_enums(IEs),
 
@@ -995,8 +995,8 @@ main(_) ->
     EncFuns = string:join(EncoderFns, ";\n\n"),
 
     ErlDecls = io_lib:format("~n~n~s~n~s~n~s~n~s.~n~n~s.~n",
-			     [MsgDescription, MTypes, Enums, Funs,
-			      EncFuns]),
+                             [MsgDescription, MTypes, Enums, Funs,
+                              EncFuns]),
 
     {ok, HrlF0} = file:read_file("include/gtp_packet.hrl"),
     [HrlHead, HrlV1, _] = binary:split(HrlF0, [?V1_TAG, ?V2_TAG], [global]),
