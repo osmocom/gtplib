@@ -42,12 +42,12 @@
 -endif.
 
 -define(equal(Expected, Actual),
-	(fun (Expected@@@, Expected@@@) -> true;
-	     (Expected@@@, Actual@@@) ->
-		 ct:pal("MISMATCH(~s:~b, ~s)~nExpected: ~p~nActual:   ~p~n",
-			[?FILE, ?LINE, ??Actual, Expected@@@, Actual@@@]),
-		 false
-	 end)(Expected, Actual) orelse error(badmatch)).
+        (fun (Expected@@@, Expected@@@) -> true;
+             (Expected@@@, Actual@@@) ->
+                 ct:pal("MISMATCH(~s:~b, ~s)~nExpected: ~p~nActual:   ~p~n",
+                        [?FILE, ?LINE, ??Actual, Expected@@@, Actual@@@]),
+                 false
+         end)(Expected, Actual) orelse error(badmatch)).
 
 %%%===================================================================
 %%% Tests
@@ -57,11 +57,11 @@
 %%--------------------------------------------------------------------
 enc_dec_prop(_Config) ->
     numtests(1000,
-	     ?FORALL(Msg, msg_gen(),
-		     begin
-			 ?equal(Msg,
-				gtp_packet:decode(gtp_packet:encode(Msg)))
-		     end)).
+             ?FORALL(Msg, msg_gen(),
+                     begin
+                         ?equal(Msg,
+                                gtp_packet:decode(gtp_packet:encode(Msg)))
+                     end)).
 
 %%%===================================================================
 %%% Generate PCAP with random (but valid GTP packets)
@@ -78,18 +78,18 @@ make_udp(NwSrc, NwDst, TpSrc, TpDst, PayLoad) ->
 
     UDPLength = 8 + size(PayLoad),
     UDPCSum = flower_tools:ip_csum(<<NwSrc:4/bytes-unit:8, NwDst:4/bytes-unit:8,
-				     0:8, Proto:8, UDPLength:16,
-				     TpSrc:16, TpDst:16, UDPLength:16, 0:16,
-				     PayLoad/binary>>),
+                                     0:8, Proto:8, UDPLength:16,
+                                     TpSrc:16, TpDst:16, UDPLength:16, 0:16,
+                                     PayLoad/binary>>),
     UDP = <<TpSrc:16, TpDst:16, UDPLength:16, UDPCSum:16, PayLoad/binary>>,
 
     TotLen = 20 + size(UDP),
     HdrCSum = flower_tools:ip_csum(<<4:4, 5:4, 0:8, TotLen:16,
-				     Id:16, 0:16, 64:8, Proto:8,
-				     0:16/integer, NwSrc:4/bytes-unit:8, NwDst:4/bytes-unit:8>>),
+                                     Id:16, 0:16, 64:8, Proto:8,
+                                     0:16/integer, NwSrc:4/bytes-unit:8, NwDst:4/bytes-unit:8>>),
     IP = <<4:4, 5:4, 0:8, TotLen:16,
-	   Id:16, 0:16, 64:8, Proto:8,
-	   HdrCSum:16/integer, NwSrc:4/bytes-unit:8, NwDst:4/bytes-unit:8>>,
+           Id:16, 0:16, 64:8, Proto:8,
+           HdrCSum:16/integer, NwSrc:4/bytes-unit:8, NwDst:4/bytes-unit:8>>,
     list_to_binary([IP, UDP]).
 
 format_pcapng(Data) ->
@@ -99,13 +99,13 @@ format_pcapng(Data) ->
 
 pcapng_shb() ->
     pcapng:encode({shb, {?PCAPNG_VERSION_MAJOR, ?PCAPNG_VERSION_MINOR},
-		   [{os, <<"CAROS">>}, {userappl, <<"CAPWAP">>}]}).
+                   [{os, <<"CAROS">>}, {userappl, <<"CAPWAP">>}]}).
 
 pcapng_ifd(Name) ->
     pcapng:encode({ifd, ?LINKTYPE_RAW, 65535,
-		   [{name,    Name},
-		    {tsresol, <<6>>},
-		    {os,      <<"CAROS">>}]}).
+                   [{name,    Name},
+                    {tsresol, <<6>>},
+                    {os,      <<"CAROS">>}]}).
 
 pcap_msg(Msg, Io) ->
     Data = gtp_packet:encode(Msg),
@@ -145,17 +145,17 @@ list_no_dupls(T) ->
 remove_duplicates([]) -> [];
 remove_duplicates([A|T]) ->
     case lists:member(A, T) of
-	true -> remove_duplicates(T);
-	false -> [A|remove_duplicates(T)]
+        true -> remove_duplicates(T);
+        false -> [A|remove_duplicates(T)]
     end.
 
 order_by_fun(Order, List) ->
     lists:foldr(
       fun(I, A) ->
-	      case lists:member(I, List) of
-		  true  -> [I|A];
-		  false -> A
-	      end
+              case lists:member(I, List) of
+                  true  -> [I|A];
+                  false -> A
+              end
       end, [], Order).
 
 order_by(Order, List) ->
@@ -169,18 +169,18 @@ flag() ->
 
 dns_label() ->
     ?LET(I, int_range(1,64),
-	 vector(I,
-		oneof(
-		  lists:seq($a, $z) ++ lists:seq($0, $9) ++ [$-]))).
+         vector(I,
+                oneof(
+                  lists:seq($a, $z) ++ lists:seq($0, $9) ++ [$-]))).
 
 dns_name_list() ->
     ?SUCHTHAT(N,
-	      ?LET(I, int_range(1,7), vector(I, dns_label())),
-	      length(lists:flatten(N)) < 100).
+              ?LET(I, int_range(1,7), vector(I, dns_label())),
+              length(lists:flatten(N)) < 100).
 
 dns_name() ->
     ?LET(L, dns_name_list(),
-	 [list_to_binary(X) || X <- L]).
+         [list_to_binary(X) || X <- L]).
 
 mcc() ->
     ?LET(I, int_range(1,999), integer_to_binary(I)).
@@ -244,7 +244,7 @@ uint16_array() ->
 
 binstr_number(Min, Max) ->
     ?LET(X,
-	 ?LET(I, int_range(Min,Max), vector(I, integer($0, $9))), list_to_binary(X)).
+         ?LET(I, int_range(Min,Max), vector(I, integer($0, $9))), list_to_binary(X)).
 
 binary(Min, Max) ->
     ?LET(I, int_range(Min,Max), binary(I)).
@@ -264,182 +264,182 @@ imeisv() ->
 msg_gen() ->
     oneof(
       [#gtp{
-	  version = v1,
-	  type = v1_msg_type(),
-	  tei = uint32(),
-	  seq_no = uint16(),
-	  ie = v1_ie()
-	 },
+          version = v1,
+          type = v1_msg_type(),
+          tei = uint32(),
+          seq_no = uint16(),
+          ie = v1_ie()
+         },
        #gtp{
-	  version = v2,
-	  type = v2_msg_type(),
-	  tei = uint32(),
-	  seq_no = uint16(),
-	  ie = v2_ie()
-	 },
+          version = v2,
+          type = v2_msg_type(),
+          tei = uint32(),
+          seq_no = uint16(),
+          ie = v2_ie()
+         },
        #gtp{
-	  version = oneof([prime_v0, prime_v0s, prime_v1, prime_v2]),
-	  type = prime_msg_type(),
-	  seq_no = uint16(),
-	  ie = prime_ie()
-	 }
+          version = oneof([prime_v0, prime_v0s, prime_v1, prime_v2]),
+          type = prime_msg_type(),
+          seq_no = uint16(),
+          ie = prime_ie()
+         }
       ]).
 
 v1_msg_type() ->
     oneof([
-	   echo_request,
-	   echo_response,
-	   version_not_supported,
-	   create_pdp_context_request,
-	   create_pdp_context_response,
-	   update_pdp_context_request,
-	   update_pdp_context_response,
-	   delete_pdp_context_request,
-	   delete_pdp_context_response,
-	   initiate_pdp_context_activation_request,
-	   initiate_pdp_context_activation_response,
-	   error_indication,
-	   pdu_notification_request,
-	   pdu_notification_response,
-	   pdu_notification_reject_request,
-	   pdu_notification_reject_response,
-	   supported_extension_headers_notification,
-	   send_routeing_information_for_gprs_request,
-	   send_routeing_information_for_gprs_response,
-	   failure_report_request,
-	   failure_report_response,
-	   note_ms_gprs_present_request,
-	   note_ms_gprs_present_response,
-	   identification_request,
-	   identification_response,
-	   sgsn_context_request,
-	   sgsn_context_response,
-	   sgsn_context_acknowledge,
-	   forward_relocation_request,
-	   forward_relocation_response,
-	   forward_relocation_complete,
-	   relocation_cancel_request,
-	   relocation_cancel_response,
-	   forward_srns_context,
-	   forward_relocation_complete_acknowledge,
-	   forward_srns_context_acknowledge,
-	   ran_information_relay,
-	   mbms_notification_request,
-	   mbms_notification_response,
-	   mbms_notification_reject_request,
-	   mbms_notification_reject_response,
-	   create_mbms_context_request,
-	   create_mbms_context_response,
-	   update_mbms_context_request,
-	   update_mbms_context_response,
-	   delete_mbms_context_request,
-	   delete_mbms_context_response,
-	   mbms_registration_request,
-	   mbms_registration_response,
-	   mbms_de_registration_request,
-	   mbms_de_registration_response,
-	   mbms_session_start_request,
-	   mbms_session_start_response,
-	   mbms_session_stop_request,
-	   mbms_session_stop_response,
-	   mbms_session_update_request,
-	   mbms_session_update_response,
-	   ms_info_change_notification_request,
-	   ms_info_change_notification_response
-	  ]).
+           echo_request,
+           echo_response,
+           version_not_supported,
+           create_pdp_context_request,
+           create_pdp_context_response,
+           update_pdp_context_request,
+           update_pdp_context_response,
+           delete_pdp_context_request,
+           delete_pdp_context_response,
+           initiate_pdp_context_activation_request,
+           initiate_pdp_context_activation_response,
+           error_indication,
+           pdu_notification_request,
+           pdu_notification_response,
+           pdu_notification_reject_request,
+           pdu_notification_reject_response,
+           supported_extension_headers_notification,
+           send_routeing_information_for_gprs_request,
+           send_routeing_information_for_gprs_response,
+           failure_report_request,
+           failure_report_response,
+           note_ms_gprs_present_request,
+           note_ms_gprs_present_response,
+           identification_request,
+           identification_response,
+           sgsn_context_request,
+           sgsn_context_response,
+           sgsn_context_acknowledge,
+           forward_relocation_request,
+           forward_relocation_response,
+           forward_relocation_complete,
+           relocation_cancel_request,
+           relocation_cancel_response,
+           forward_srns_context,
+           forward_relocation_complete_acknowledge,
+           forward_srns_context_acknowledge,
+           ran_information_relay,
+           mbms_notification_request,
+           mbms_notification_response,
+           mbms_notification_reject_request,
+           mbms_notification_reject_response,
+           create_mbms_context_request,
+           create_mbms_context_response,
+           update_mbms_context_request,
+           update_mbms_context_response,
+           delete_mbms_context_request,
+           delete_mbms_context_response,
+           mbms_registration_request,
+           mbms_registration_response,
+           mbms_de_registration_request,
+           mbms_de_registration_response,
+           mbms_session_start_request,
+           mbms_session_start_response,
+           mbms_session_stop_request,
+           mbms_session_stop_response,
+           mbms_session_update_request,
+           mbms_session_update_response,
+           ms_info_change_notification_request,
+           ms_info_change_notification_response
+          ]).
 
 prime_msg_type() ->
     oneof([
-	   version_not_supported,
-	   node_alive_request,
-	   node_alive_response,
-	   redirection_request,
-	   redirection_response,
-	   error_indication,
-	   data_record_transfer_request,
-	   data_record_transfer_response
-	  ]).
+           version_not_supported,
+           node_alive_request,
+           node_alive_response,
+           redirection_request,
+           redirection_response,
+           error_indication,
+           data_record_transfer_request,
+           data_record_transfer_response
+          ]).
 
 v2_msg_type() ->
     oneof([
-	   echo_request,
-	   echo_response,
-	   version_not_supported,
-	   create_session_request,
-	   create_session_response,
-	   delete_session_request,
-	   delete_session_response,
-	   modify_bearer_request,
-	   modify_bearer_response,
-	   change_notification_request,
-	   change_notification_response,
-	   modify_bearer_command,
-	   modify_bearer_failure_indication,
-	   delete_bearer_command,
-	   delete_bearer_failure_indication,
-	   bearer_resource_command,
-	   bearer_resource_failure_indication,
-	   downlink_data_notification_failure_indication,
-	   trace_session_activation,
-	   trace_session_deactivation,
-	   stop_paging_indication,
-	   create_bearer_request,
-	   create_bearer_response,
-	   update_bearer_request,
-	   update_bearer_response,
-	   delete_bearer_request,
-	   delete_bearer_response,
-	   delete_pdn_connection_set_request,
-	   delete_pdn_connection_set_response,
-	   pgw_downlink_triggering_notification,
-	   pgw_downlink_triggering_acknowledge,
-	   identification_request,
-	   identification_response,
-	   context_request,
-	   context_response,
-	   context_acknowledge,
-	   forward_relocation_request,
-	   forward_relocation_response,
-	   forward_relocation_complete_notification,
-	   forward_relocation_complete_acknowledge,
-	   forward_access_context_notification,
-	   forward_access_context_acknowledge,
-	   relocation_cancel_request,
-	   relocation_cancel_response,
-	   configuration_transfer_tunnel,
-	   detach_notification,
-	   detach_acknowledge,
-	   cs_paging_indication,
-	   ran_information_relay,
-	   alert_mme_notification,
-	   alert_mme_acknowledge,
-	   ue_activity_notification,
-	   ue_activity_acknowledge,
-	   isr_status_indication,
-	   create_forwarding_tunnel_request,
-	   create_forwarding_tunnel_response,
-	   suspend_notification,
-	   suspend_acknowledge,
-	   resume_notification,
-	   resume_acknowledge,
-	   create_indirect_data_forwarding_tunnel_request,
-	   create_indirect_data_forwarding_tunnel_response,
-	   delete_indirect_data_forwarding_tunnel_request,
-	   delete_indirect_data_forwarding_tunnel_response,
-	   release_access_bearers_request,
-	   release_access_bearers_response,
-	   downlink_data_notification,
-	   downlink_data_notification_acknowledge,
-	   pgw_restart_notification,
-	   pgw_restart_notification_acknowledge,
-	   update_pdn_connection_set_request,
-	   update_pdn_connection_set_response,
-	   mbms_session_start_response,
-	   mbms_session_update_request,
-	   mbms_session_update_response,
-	   mbms_session_stop_request,
-	   mbms_session_stop_response
-	  ]).
+           echo_request,
+           echo_response,
+           version_not_supported,
+           create_session_request,
+           create_session_response,
+           delete_session_request,
+           delete_session_response,
+           modify_bearer_request,
+           modify_bearer_response,
+           change_notification_request,
+           change_notification_response,
+           modify_bearer_command,
+           modify_bearer_failure_indication,
+           delete_bearer_command,
+           delete_bearer_failure_indication,
+           bearer_resource_command,
+           bearer_resource_failure_indication,
+           downlink_data_notification_failure_indication,
+           trace_session_activation,
+           trace_session_deactivation,
+           stop_paging_indication,
+           create_bearer_request,
+           create_bearer_response,
+           update_bearer_request,
+           update_bearer_response,
+           delete_bearer_request,
+           delete_bearer_response,
+           delete_pdn_connection_set_request,
+           delete_pdn_connection_set_response,
+           pgw_downlink_triggering_notification,
+           pgw_downlink_triggering_acknowledge,
+           identification_request,
+           identification_response,
+           context_request,
+           context_response,
+           context_acknowledge,
+           forward_relocation_request,
+           forward_relocation_response,
+           forward_relocation_complete_notification,
+           forward_relocation_complete_acknowledge,
+           forward_access_context_notification,
+           forward_access_context_acknowledge,
+           relocation_cancel_request,
+           relocation_cancel_response,
+           configuration_transfer_tunnel,
+           detach_notification,
+           detach_acknowledge,
+           cs_paging_indication,
+           ran_information_relay,
+           alert_mme_notification,
+           alert_mme_acknowledge,
+           ue_activity_notification,
+           ue_activity_acknowledge,
+           isr_status_indication,
+           create_forwarding_tunnel_request,
+           create_forwarding_tunnel_response,
+           suspend_notification,
+           suspend_acknowledge,
+           resume_notification,
+           resume_acknowledge,
+           create_indirect_data_forwarding_tunnel_request,
+           create_indirect_data_forwarding_tunnel_response,
+           delete_indirect_data_forwarding_tunnel_request,
+           delete_indirect_data_forwarding_tunnel_response,
+           release_access_bearers_request,
+           release_access_bearers_response,
+           downlink_data_notification,
+           downlink_data_notification_acknowledge,
+           pgw_restart_notification,
+           pgw_restart_notification_acknowledge,
+           update_pdn_connection_set_request,
+           update_pdn_connection_set_response,
+           mbms_session_start_response,
+           mbms_session_update_request,
+           mbms_session_update_response,
+           mbms_session_stop_request,
+           mbms_session_stop_response
+          ]).
 
 v1_simple_ie() ->
     oneof(
@@ -784,70 +784,70 @@ gen_cause() ->
     #cause{
        instance = instance(),
        value =
-	   oneof(
-	     [request_imsi,
-	      request_imei,
-	      request_imsi_and_imei,
-	      no_identity_needed,
-	      request_ms_refuses,
-	      request_ms_is_not_gprs_responding,
-	      reactivation_requested,
-	      pdp_address_inactivity_timer_expires,
-	      network_failure,
-	      qos_parameter_mismatch,
-	      gtpprime_system_failure,
-	      gtpprime_the_transmit_buffers_are_becoming_full,
-	      gtpprime_the_receive_buffers_are_becoming_full,
-	      gtpprime_another_node_is_about_to_go_down,
-	      gtpprime_this_node_is_about_to_go_down,
-	      request_accepted,
-	      new_pdp_type_due_to_network_preference,
-	      new_pdp_type_due_to_single_address_bearer_only,
-	      cdr_decoding_error,
-	      non_existent,
-	      invalid_message_format,
-	      imsi_imei_not_known,
-	      ms_is_gprs_detached,
-	      reject_ms_is_not_gprs_responding,
-	      reject_ms_refuses,
-	      version_not_supported,
-	      no_resources_available,
-	      service_not_supported,
-	      mandatory_ie_incorrect,
-	      mandatory_ie_missing,
-	      optional_ie_incorrect,
-	      system_failure,
-	      roaming_restriction,
-	      p_tmsi_signature_mismatch,
-	      gprs_connection_suspended,
-	      authentication_failure,
-	      user_authentication_failed,
-	      context_not_found,
-	      all_dynamic_pdp_addresses_are_occupied,
-	      no_memory_is_available,
-	      relocation_failure,
-	      unknown_mandatory_extension_header,
-	      semantic_error_in_the_tft_operation,
-	      syntactic_error_in_the_tft_operation,
-	      semantic_errors_in_packet_filter,
-	      syntactic_errors_in_packet_filter,
-	      missing_or_unknown_apn,
-	      unknown_pdp_address_or_pdp_type,
-	      pdp_context_without_tft_already_activated,
-	      apn_access_denied_no_subscription,
-	      apn_restriction_type_incompatibility_with_currently_active_pdp_contexts,
-	      ms_mbms_capabilities_insufficient,
-	      invalid_correlation_id,
-	      mbms_bearer_context_superseded,
-	      bearer_control_mode_violation,
-	      collision_with_network_initiated_request,
-	      apn_congestion,
-	      bearer_handling_not_supported,
-	      target_access_restricted_for_the_subscriber,
-	      request_related_to_possibly_duplicated_packets_already_fulfilled,
-	      request_already_fulfilled,
-	      sequence_numbers_of_released_cancelled_packets_ie_incorrect,
-	      request_not_fulfilled])
+           oneof(
+             [request_imsi,
+              request_imei,
+              request_imsi_and_imei,
+              no_identity_needed,
+              request_ms_refuses,
+              request_ms_is_not_gprs_responding,
+              reactivation_requested,
+              pdp_address_inactivity_timer_expires,
+              network_failure,
+              qos_parameter_mismatch,
+              gtpprime_system_failure,
+              gtpprime_the_transmit_buffers_are_becoming_full,
+              gtpprime_the_receive_buffers_are_becoming_full,
+              gtpprime_another_node_is_about_to_go_down,
+              gtpprime_this_node_is_about_to_go_down,
+              request_accepted,
+              new_pdp_type_due_to_network_preference,
+              new_pdp_type_due_to_single_address_bearer_only,
+              cdr_decoding_error,
+              non_existent,
+              invalid_message_format,
+              imsi_imei_not_known,
+              ms_is_gprs_detached,
+              reject_ms_is_not_gprs_responding,
+              reject_ms_refuses,
+              version_not_supported,
+              no_resources_available,
+              service_not_supported,
+              mandatory_ie_incorrect,
+              mandatory_ie_missing,
+              optional_ie_incorrect,
+              system_failure,
+              roaming_restriction,
+              p_tmsi_signature_mismatch,
+              gprs_connection_suspended,
+              authentication_failure,
+              user_authentication_failed,
+              context_not_found,
+              all_dynamic_pdp_addresses_are_occupied,
+              no_memory_is_available,
+              relocation_failure,
+              unknown_mandatory_extension_header,
+              semantic_error_in_the_tft_operation,
+              syntactic_error_in_the_tft_operation,
+              semantic_errors_in_packet_filter,
+              syntactic_errors_in_packet_filter,
+              missing_or_unknown_apn,
+              unknown_pdp_address_or_pdp_type,
+              pdp_context_without_tft_already_activated,
+              apn_access_denied_no_subscription,
+              apn_restriction_type_incompatibility_with_currently_active_pdp_contexts,
+              ms_mbms_capabilities_insufficient,
+              invalid_correlation_id,
+              mbms_bearer_context_superseded,
+              bearer_control_mode_violation,
+              collision_with_network_initiated_request,
+              apn_congestion,
+              bearer_handling_not_supported,
+              target_access_restricted_for_the_subscriber,
+              request_related_to_possibly_duplicated_packets_already_fulfilled,
+              request_already_fulfilled,
+              sequence_numbers_of_released_cancelled_packets_ie_incorrect,
+              request_not_fulfilled])
       }.
 
 gen_international_mobile_subscriber_identity() ->
@@ -1008,9 +1008,9 @@ gen_packet_transfer_command() ->
     #packet_transfer_command{
        instance = instance(),
        command = oneof([send_data_record_packet,
-			send_possibly_duplicated_data_record_packet,
-			cancel_data_record_packet,
-			release_data_record_packet])
+                        send_possibly_duplicated_data_record_packet,
+                        cancel_data_record_packet,
+                        release_data_record_packet])
       }.
 
 gen_charging_id() ->
@@ -1108,17 +1108,17 @@ gen_access_point_name() ->
 
 gen_random_list_of_pco() ->
     list(oneof(
-	   [{ipcp,'CP-Configure-Request',0,
-	     [{ms_dns1,<<0,0,0,0>>},{ms_dns2,<<0,0,0,0>>}]},
-	    {13, <<>>},
-	    {65280, <<19,1,132>>},
-	    {12, <<>>},
-	    {10, <<>>},
-	    {16, <<>>},
-	    {13, ip4_address()},
-	    {ipcp,'CP-Configure-Nak',0,
-	     [{ms_dns1, ip4_address()},{ms_dns2, ip4_address()}]},
-	    {5,<<2>>}])).
+           [{ipcp,'CP-Configure-Request',0,
+             [{ms_dns1,<<0,0,0,0>>},{ms_dns2,<<0,0,0,0>>}]},
+            {13, <<>>},
+            {65280, <<19,1,132>>},
+            {12, <<>>},
+            {10, <<>>},
+            {16, <<>>},
+            {13, ip4_address()},
+            {ipcp,'CP-Configure-Nak',0,
+             [{ms_dns1, ip4_address()},{ms_dns2, ip4_address()}]},
+            {5,<<2>>}])).
 
 gen_protocol_configuration_options() ->
     #protocol_configuration_options{
@@ -1209,15 +1209,15 @@ gen_common_flags() ->
     #common_flags{
        instance = instance(),
        flags =
-	   flags(
-	     ['Dual Address Bearer Flag',
-	      'Upgrade QoS Supported',
-	      'NRSN',
-	      'No QoS negotiation',
-	      'MBMS Counting Information',
-	      'RAN Procedures Ready',
-	      'MBMS Service Type',
-	      'Prohibit Payload Compression'])
+           flags(
+             ['Dual Address Bearer Flag',
+              'Upgrade QoS Supported',
+              'NRSN',
+              'No QoS negotiation',
+              'MBMS Counting Information',
+              'RAN Procedures Ready',
+              'MBMS Service Type',
+              'Prohibit Payload Compression'])
       }.
 
 gen_apn_restriction() ->
@@ -1445,7 +1445,7 @@ gen_extended_common_flags() ->
     #extended_common_flags{
        instance = instance(),
        flags =
-	   flags(['CCRSI', 'CPSR', 'RetLoc', 'VB', 'PCRI', 'BDWI', 'UASI'])
+           flags(['CCRSI', 'CPSR', 'RetLoc', 'VB', 'PCRI', 'BDWI', 'UASI'])
       }.
 
 gen_user_csg_information() ->
@@ -1585,7 +1585,7 @@ gen_data_record_packet() ->
        application = int_range(1, 7),
        version = {int_range(0, 7), int_range(0,9)},
        records =
-	   ?LET(I, int_range(1,10), vector(I, binary()))
+           ?LET(I, int_range(1,10), vector(I, binary()))
       }.
 
 gen_requests_responded() ->
@@ -1628,86 +1628,86 @@ gen_v2_cause() ->
     #v2_cause{
        instance = instance(),
        v2_cause =
-	   oneof([reserved,
-		  local_detach,
-		  complete_detach,
-		  rat_changed_from_3gpp_to_non_3gpp,
-		  isr_deactivation,
-		  error_indication_received_from_rnc_enodeb_s4_sgsn,
-		  imsi_detach_only,
-		  reactivation_requested,
-		  pdn_reconnection_to_this_apn_disallowed,
-		  access_changed_from_non_3gpp_to_3gpp,
-		  pdn_connection_inactivity_timer_expires,
-		  pgw_not_responding,
-		  network_failure,
-		  qos_parameter_mismatch,
-		  request_accepted,
-		  request_accepted_partially,
-		  new_pdn_type_due_to_network_preference,
-		  new_pdn_type_due_to_single_address_bearer_only,
-		  context_not_found,
-		  invalid_message_format,
-		  version_not_supported_by_next_peer,
-		  invalid_length,
-		  service_not_supported,
-		  mandatory_ie_incorrect,
-		  mandatory_ie_missing,
-		  system_failure,
-		  no_resources_available,
-		  semantic_error_in_the_tft_operation,
-		  syntactic_error_in_the_tft_operation,
-		  semantic_errors_in_packet_filter,
-		  syntactic_errors_in_packet_filter,
-		  missing_or_unknown_apn,
-		  gre_key_not_found,
-		  relocation_failure,
-		  denied_in_rat,
-		  preferred_pdn_type_not_supported,
-		  all_dynamic_addresses_are_occupied,
-		  ue_context_without_tft_already_activated,
-		  protocol_type_not_supported,
-		  ue_not_responding,
-		  ue_refuses,
-		  service_denied,
-		  unable_to_page_ue,
-		  no_memory_available,
-		  user_authentication_failed,
-		  apn_access_denied___no_subscription,
-		  request_rejected,
-		  p_tmsi_signature_mismatch,
-		  imsi_imei_not_known,
-		  semantic_error_in_the_tad_operation,
-		  syntactic_error_in_the_tad_operation,
-		  remote_peer_not_responding,
-		  collision_with_network_initiated_request,
-		  unable_to_page_ue_due_to_suspension,
-		  conditional_ie_missing,
-		  apn_restriction_type_incompatible_with_currently_active_pdn_connection,
-		  invalid_overall_length_of_the_triggered_response_message_and_a_piggybacked_initial_message,
-		  data_forwarding_not_supported,
-		  invalid_reply_from_remote_peer,
-		  fallback_to_gtpv1,
-		  invalid_peer,
-		  temporarily_rejected_due_to_handover_tau_rau_procedure_in_progress,
-		  modifications_not_limited_to_s1_u_bearers,
-		  request_rejected_for_a_pmipv6_reason,
-		  apn_congestion,
-		  bearer_handling_not_supported,
-		  ue_already_re_attached,
-		  multiple_pdn_connections_for_a_given_apn_not_allowed,
-		  target_access_restricted_for_the_subscriber,
-		  mme_sgsn_refuses_due_to_vplmn_policy,
-		  gtp_c_entity_congestion,
-		  late_overlapping_request,
-		  timed_out_request,
-		  ue_is_temporarily_not_reachable_due_to_power_saving,
-		  relocation_failure_due_to_nas_message_redirection,
-		  ue_not_authorised_by_ocs_or_external_aaa_server,
-		  multiple_accesses_to_a_pdn_connection_not_allowed,
-		  request_rejected_due_to_ue_capability,
-		  s1_u_path_failure,
-		  '5gc_not_allowed']),
+           oneof([reserved,
+                  local_detach,
+                  complete_detach,
+                  rat_changed_from_3gpp_to_non_3gpp,
+                  isr_deactivation,
+                  error_indication_received_from_rnc_enodeb_s4_sgsn,
+                  imsi_detach_only,
+                  reactivation_requested,
+                  pdn_reconnection_to_this_apn_disallowed,
+                  access_changed_from_non_3gpp_to_3gpp,
+                  pdn_connection_inactivity_timer_expires,
+                  pgw_not_responding,
+                  network_failure,
+                  qos_parameter_mismatch,
+                  request_accepted,
+                  request_accepted_partially,
+                  new_pdn_type_due_to_network_preference,
+                  new_pdn_type_due_to_single_address_bearer_only,
+                  context_not_found,
+                  invalid_message_format,
+                  version_not_supported_by_next_peer,
+                  invalid_length,
+                  service_not_supported,
+                  mandatory_ie_incorrect,
+                  mandatory_ie_missing,
+                  system_failure,
+                  no_resources_available,
+                  semantic_error_in_the_tft_operation,
+                  syntactic_error_in_the_tft_operation,
+                  semantic_errors_in_packet_filter,
+                  syntactic_errors_in_packet_filter,
+                  missing_or_unknown_apn,
+                  gre_key_not_found,
+                  relocation_failure,
+                  denied_in_rat,
+                  preferred_pdn_type_not_supported,
+                  all_dynamic_addresses_are_occupied,
+                  ue_context_without_tft_already_activated,
+                  protocol_type_not_supported,
+                  ue_not_responding,
+                  ue_refuses,
+                  service_denied,
+                  unable_to_page_ue,
+                  no_memory_available,
+                  user_authentication_failed,
+                  apn_access_denied___no_subscription,
+                  request_rejected,
+                  p_tmsi_signature_mismatch,
+                  imsi_imei_not_known,
+                  semantic_error_in_the_tad_operation,
+                  syntactic_error_in_the_tad_operation,
+                  remote_peer_not_responding,
+                  collision_with_network_initiated_request,
+                  unable_to_page_ue_due_to_suspension,
+                  conditional_ie_missing,
+                  apn_restriction_type_incompatible_with_currently_active_pdn_connection,
+                  invalid_overall_length_of_the_triggered_response_message_and_a_piggybacked_initial_message,
+                  data_forwarding_not_supported,
+                  invalid_reply_from_remote_peer,
+                  fallback_to_gtpv1,
+                  invalid_peer,
+                  temporarily_rejected_due_to_handover_tau_rau_procedure_in_progress,
+                  modifications_not_limited_to_s1_u_bearers,
+                  request_rejected_for_a_pmipv6_reason,
+                  apn_congestion,
+                  bearer_handling_not_supported,
+                  ue_already_re_attached,
+                  multiple_pdn_connections_for_a_given_apn_not_allowed,
+                  target_access_restricted_for_the_subscriber,
+                  mme_sgsn_refuses_due_to_vplmn_policy,
+                  gtp_c_entity_congestion,
+                  late_overlapping_request,
+                  timed_out_request,
+                  ue_is_temporarily_not_reachable_due_to_power_saving,
+                  relocation_failure_due_to_nas_message_redirection,
+                  ue_not_authorised_by_ocs_or_external_aaa_server,
+                  multiple_accesses_to_a_pdn_connection_not_allowed,
+                  request_rejected_due_to_ue_capability,
+                  s1_u_path_failure,
+                  '5gc_not_allowed']),
        pce = oneof([0,1]),
        bce = oneof([0,1]),
        cs = oneof([0,1]),
@@ -1766,16 +1766,16 @@ gen_v2_indication() ->
     #v2_indication{
        instance = instance(),
        flags =
-	   flags(
-	     ['DAF', 'DTF', 'HI', 'DFI', 'OI', 'ISRSI', 'ISRAI', 'SGWCI',
-	      'SQCI', 'UIMSI', 'CFSI', 'CRSI', 'P', 'PT', 'SI', 'MSV',
-	      'RetLoc', 'PBIC', 'SRNI', 'S6AF', 'S4AF', 'MBMDT', 'ISRAU', 'CCRSI',
-	      'CPRAI', 'ARRL', 'PPOF', 'PPON/PPEI', 'PPSI', 'CSFBI', 'CLII', 'CPSR',
-	      'NSI', 'UASI', 'DTCI', 'BDWI', 'PSCI', 'PCRI', 'AOSI', 'AOPI',
-	      'ROAAI', 'EPCOSI', 'CPOPCI', 'PMTSMI', 'S11TF', 'PNSI', 'UNACCSI', 'WPMSI',
-	      '5GSNN26', 'REPREFI', '5GSIWK', 'EEVRSI', 'LTEMUI', 'LTEMPI', 'ENBCRSI', 'TSPCMI',
-		  'CSRMFI', 'MTEDTN', 'MTEDTA', 'N5GNMI', '5GCNRS', '5GCNRI', '5SRHOI', 'ETHPDN',
-		  'SISSME', 'NSENBI', 'IPFUPF', 'EMCI'])
+           flags(
+             ['DAF', 'DTF', 'HI', 'DFI', 'OI', 'ISRSI', 'ISRAI', 'SGWCI',
+              'SQCI', 'UIMSI', 'CFSI', 'CRSI', 'P', 'PT', 'SI', 'MSV',
+              'RetLoc', 'PBIC', 'SRNI', 'S6AF', 'S4AF', 'MBMDT', 'ISRAU', 'CCRSI',
+              'CPRAI', 'ARRL', 'PPOF', 'PPON/PPEI', 'PPSI', 'CSFBI', 'CLII', 'CPSR',
+              'NSI', 'UASI', 'DTCI', 'BDWI', 'PSCI', 'PCRI', 'AOSI', 'AOPI',
+              'ROAAI', 'EPCOSI', 'CPOPCI', 'PMTSMI', 'S11TF', 'PNSI', 'UNACCSI', 'WPMSI',
+              '5GSNN26', 'REPREFI', '5GSIWK', 'EEVRSI', 'LTEMUI', 'LTEMPI', 'ENBCRSI', 'TSPCMI',
+              'CSRMFI', 'MTEDTN', 'MTEDTA', 'N5GNMI', '5GCNRS', '5GCNRI', '5SRHOI', 'ETHPDN',
+              'SISSME', 'NSENBI', 'IPFUPF', 'EMCI'])
 
 
       }.
@@ -1789,20 +1789,20 @@ gen_v2_protocol_configuration_options() ->
 gen_v2_pdn_address_allocation() ->
     oneof(
       [#v2_pdn_address_allocation{
-	  instance = instance(),
-	  type = 'ipv4',
-	  address = ip4_address()
-	 },
+          instance = instance(),
+          type = 'ipv4',
+          address = ip4_address()
+         },
        #v2_pdn_address_allocation{
-	  instance = instance(),
-	  type = 'ipv6',
-	  address = ip6_address()
-	 },
+          instance = instance(),
+          type = 'ipv6',
+          address = ip6_address()
+         },
        #v2_pdn_address_allocation{
-	  instance = instance(),
-	  type = 'ipv4v6',
-	  address = ip46_address()
-	 }]).
+          instance = instance(),
+          type = 'ipv4v6',
+          address = ip46_address()
+         }]).
 
 gen_v2_bearer_level_quality_of_service() ->
     #v2_bearer_level_quality_of_service{
@@ -1912,24 +1912,24 @@ gen_v2_user_location_information() ->
 gen_v2_fully_qualified_tunnel_endpoint_identifier() ->
     oneof(
       [#v2_fully_qualified_tunnel_endpoint_identifier{
-	  instance = instance(),
-	  interface_type = int_range(0,16#3f),
-	  key = uint32(),
-	  ipv4 = ip4_address()
-	 },
+          instance = instance(),
+          interface_type = int_range(0,16#3f),
+          key = uint32(),
+          ipv4 = ip4_address()
+         },
        #v2_fully_qualified_tunnel_endpoint_identifier{
-	  instance = instance(),
-	  interface_type = int_range(0,16#3f),
-	  key = uint32(),
-	  ipv6 = ip6_address()
-	 },
+          instance = instance(),
+          interface_type = int_range(0,16#3f),
+          key = uint32(),
+          ipv6 = ip6_address()
+         },
        #v2_fully_qualified_tunnel_endpoint_identifier{
-	  instance = instance(),
-	  interface_type = int_range(0,16#3f),
-	  key = uint32(),
-	  ipv4 = ip4_address(),
-	  ipv6 = ip6_address()
-	 }]).
+          instance = instance(),
+          interface_type = int_range(0,16#3f),
+          key = uint32(),
+          ipv4 = ip4_address(),
+          ipv6 = ip6_address()
+         }]).
 
 gen_v2_tmsi() ->
     #v2_tmsi{
@@ -1989,7 +1989,7 @@ gen_v2_trace_information() ->
        session_trace_depth = uint8(),
        list_of_interfaces = binary(12),
        ip_address_of_trace_collection_entity =
-	   oneof([ip4_address(), ip6_address()])
+           oneof([ip4_address(), ip6_address()])
       }.
 
 gen_v2_bearer_flags() ->
@@ -2188,36 +2188,36 @@ gen_v2_change_reporting_action() ->
     #v2_change_reporting_action{
        instance = instance(),
        action = oneof([stop_reporting,
-		       start_reporting_cgi_sai,
-		       start_reporting_rai,
-		       start_reporting_tai,
-		       start_reporting_ecgi,
-		       start_reporting_cgi_sai_and_rai,
-		       start_reporting_tai_and_ecgi,
-		       start_reporting_macro_enodeb_id_and_extended_macro_enodeb_id,
-		       start_reporting_tai__macro_enodeb_id_and_extended_macro_enodeb_id])
+                       start_reporting_cgi_sai,
+                       start_reporting_rai,
+                       start_reporting_tai,
+                       start_reporting_ecgi,
+                       start_reporting_cgi_sai_and_rai,
+                       start_reporting_tai_and_ecgi,
+                       start_reporting_macro_enodeb_id_and_extended_macro_enodeb_id,
+                       start_reporting_tai__macro_enodeb_id_and_extended_macro_enodeb_id])
       }.
 
 gen_v2_fully_qualified_pdn_connection_set_identifier() ->
     oneof([
-	   #v2_fully_qualified_pdn_connection_set_identifier{
-	      instance = instance(),
-	      node_id_type = 0,
-	      node_id = ip4_address(),
-	      csids = ?LET(I, uint4(), vector(I, uint16()))
-	     },
-	   #v2_fully_qualified_pdn_connection_set_identifier{
-	      instance = instance(),
-	      node_id_type = 1,
-	      node_id = ip6_address(),
-	      csids = ?LET(I, uint4(), vector(I, uint16()))
-	     },
-	   #v2_fully_qualified_pdn_connection_set_identifier{
-	      instance = instance(),
-	      node_id_type = 2,
-	      node_id = {int_range(0,999), int_range(0,999), int_range(0,16#0fff)},
-	      csids = ?LET(I, uint4(), vector(I, uint16()))
-	     }]).
+           #v2_fully_qualified_pdn_connection_set_identifier{
+              instance = instance(),
+              node_id_type = 0,
+              node_id = ip4_address(),
+              csids = ?LET(I, uint4(), vector(I, uint16()))
+             },
+           #v2_fully_qualified_pdn_connection_set_identifier{
+              instance = instance(),
+              node_id_type = 1,
+              node_id = ip6_address(),
+              csids = ?LET(I, uint4(), vector(I, uint16()))
+             },
+           #v2_fully_qualified_pdn_connection_set_identifier{
+              instance = instance(),
+              node_id_type = 2,
+              node_id = {int_range(0,999), int_range(0,999), int_range(0,16#0fff)},
+              csids = ?LET(I, uint4(), vector(I, uint16()))
+             }]).
 
 gen_v2_channel_needed() ->
     #v2_channel_needed{
@@ -2335,7 +2335,7 @@ gen_v2_node_features() ->
     #v2_node_features{
        instance = instance(),
        features =
-	   flags(['ETH', 'S1UN', 'CIOT', 'NTSR', 'MABR', 'PRN'])
+           flags(['ETH', 'S1UN', 'CIOT', 'NTSR', 'MABR', 'PRN'])
       }.
 
 gen_v2_mbms_time_to_data_transfer() ->
@@ -2425,7 +2425,7 @@ gen_v2_change_to_report_flags_() ->
     #v2_change_to_report_flags_{
        instance = instance(),
        flags = flags(['TZCR', 'SNCR'])
-     }.
+      }.
 
 gen_v2_action_indication() ->
     #v2_action_indication{
@@ -2436,27 +2436,27 @@ gen_v2_action_indication() ->
 gen_v2_twan_identifier() ->
     oneof(
       [#v2_twan_identifier{
-	  instance = instance(),
-	  ssid = binary(),
-	  bssid = oneof([undefined, binary(6)]),
-	  civic_address = oneof([undefined, binary()]),
-	  plmn_id = oneof([undefined, {mcc(), mnc()}]),
-	  operator_name = oneof([undefined, binary()]),
-	  relay_identity_type = undefined,
-	  relay_identity = undefined,
-	  circuit_id = undefined
-	 },
+          instance = instance(),
+          ssid = binary(),
+          bssid = oneof([undefined, binary(6)]),
+          civic_address = oneof([undefined, binary()]),
+          plmn_id = oneof([undefined, {mcc(), mnc()}]),
+          operator_name = oneof([undefined, binary()]),
+          relay_identity_type = undefined,
+          relay_identity = undefined,
+          circuit_id = undefined
+         },
        #v2_twan_identifier{
-	  instance = instance(),
-	  ssid = binary(),
-	  bssid = oneof([undefined, binary(6)]),
-	  civic_address = oneof([undefined, binary()]),
-	  plmn_id = oneof([undefined, {mcc(), mnc()}]),
-	  operator_name = oneof([undefined, binary()]),
-	  relay_identity_type = uint8(),
-	  relay_identity = binary(),
-	  circuit_id = binary()
-	 }]).
+          instance = instance(),
+          ssid = binary(),
+          bssid = oneof([undefined, binary(6)]),
+          civic_address = oneof([undefined, binary()]),
+          plmn_id = oneof([undefined, {mcc(), mnc()}]),
+          operator_name = oneof([undefined, binary()]),
+          relay_identity_type = uint8(),
+          relay_identity = binary(),
+          circuit_id = binary()
+         }]).
 
 gen_v2_uli_timestamp() ->
     #v2_uli_timestamp{
@@ -2475,7 +2475,7 @@ gen_v2_ran_nas_cause() ->
        protocol = uint4(),
        type = uint4(),
        cause = binary()
-     }.
+      }.
 
 gen_v2_cn_operator_selection_entity() ->
     #v2_cn_operator_selection_entity{
